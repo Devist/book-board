@@ -1,0 +1,17 @@
+body {
+  width: 100%;
+  max-width: 50rem;
+  margin: auto;
+  padding: 0.5rem 2rem;
+}
+
+header {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 5px 2rem;
+}
+
+section {
+  padding: 0 2rem;
+}

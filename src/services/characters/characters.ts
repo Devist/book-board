@@ -10,7 +10,7 @@ export class CharactersService implements ICharactersService {
 
   async getAll(
     pagination: IPaginationRequest<void>
-  ): Promise<IList<ICharacterData>> {
+  ): Promise<ICharacterData[]> {
     return await this.repository.fetchItems(pagination)
   }
 

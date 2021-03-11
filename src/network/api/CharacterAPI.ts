@@ -5,8 +5,8 @@ import { APIRequest } from '../APIRequest'
 
 export namespace CharacterAPI {
   // 캐릭터 리스트 가져오기
-  export class GetCharacters implements APIRequest<IList<ICharacterData>> {
-    response: IList<ICharacterData> | undefined
+  export class GetCharacters implements APIRequest<ICharacterData[]> {
+    response: ICharacterData[] | undefined
     path = '/api/characters'
     method = HTTPMethod.GET
     parse = (data: AxiosResponse) => data.data

@@ -2,11 +2,13 @@
 
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
   entry: {
     main: './src/ui/pages/main/index.ts',
   },
+  devtool: 'inline-source-map',
   context: path.resolve(__dirname),
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -14,13 +16,14 @@ module.exports = {
   },
   module: {
     rules: [
+      /****************
+       * LOADERS
+       *****************/
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+        test: /\.ts|tsx$/,
+        exclude: [/node_modules/],
+        use: 'awesome-typescript-loader',
       },
-    ],
-    rules: [
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
@@ -29,6 +32,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+    },
   },
   devtool: 'source-map',
   plugins: [
@@ -38,5 +44,6 @@ module.exports = {
       inject: true,
       filename: 'index.html',
     }),
+    // new CheckerPlugin(),
   ],
 }

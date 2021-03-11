@@ -1,6 +1,6 @@
 export interface ICharacterData {
   readonly url: string
-  readonly name: string
+  readonly name: string // 중복되지 않는다고 가정
   readonly gender: Gender
   readonly curture: string
   readonly born: string

@@ -11,18 +11,17 @@ export class Main {
   private characterService: CharactersService
   filters: any
   items: ICharacterData[]
-  pagination: { page: number; pageSize: number }
+  pagination = { page: 2, pageSize: 10 }
 
   constructor() {
+    const list = document.querySelector('#list')
+
     this.characterService = new CharactersService()
-    this.pagination = {
-      page: 2,
-      pageSize: 10,
-    }
     this.characterService
       .getAll(this.pagination)
       .then((result: ICharacterData[]) => {
         this.items = result
+        list.classList.remove('loading')
         this.setPage()
       })
   }

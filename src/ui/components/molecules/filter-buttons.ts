@@ -1,37 +1,48 @@
-// import TimeLimitBoard from '../../components/molecules/time-limit-board/TimeLimitBoard'
-// import ScoreBoard from '../../components/molecules/score-board/ScoreBoard'
-// import GameConsole from '../../components/organisms/game/GameConsole'
-
 import Button from '@/ui/components/atoms/button'
 import FilterButton from '@/ui/components/atoms/filter-button'
 
 export class FilterButtons {
-  divElement: HTMLElement
+  element: HTMLElement
   isLiveFilter: FilterButton
   isSexFilter: FilterButton
+  tvFilter: FilterButton
   initFilter: Button
 
   constructor(public id: string) {
-    this.divElement = document.createElement('DIV')
+    this.element = document.querySelector('#filter')
     this.setId(id)
     this.setPage()
   }
 
   setId(id: string) {
-    this.divElement.id = id
+    this.element.id = id
   }
 
   setPage() {
-    this.isLiveFilter = new FilterButton('생존인물만', this.id)
-    this.isSexFilter = new FilterButton('여자', this.id)
-    this.isLiveFilter = new FilterButton('tvSeries 없음', this.id)
+    this.isLiveFilter = new FilterButton('생존인물만', 'isLive', this.id)
+    this.isSexFilter = new FilterButton('여자', 'gender', this.id)
+    this.tvFilter = new FilterButton('tvSeries 없음', 'hasTvSeries', this.id)
     this.initFilter = new Button('filterInitButton', '초기화', '타입', this.id)
   }
 
-  // 이벤트 위임으로 처리
+  setInactiveAll() {
+    this.isLiveFilter.isActive = false
+    this.isSexFilter.isActive = false
+    this.tvFilter.isActive = false
+    this.element
+      .querySelectorAll('.filter-button')
+      .forEach((item) => item.classList.remove('active'))
+  }
+
   handleClick(callback: any) {
-    this.divElement.addEventListener('click', () => {
-      callback()
+    this.element.addEventListener('click', (e: any) => {
+      if (e.target.id) {
+        callback('init')
+        return
+      }
+      const id = e.target.dataset.toggleId
+      const isActive = e.target.classList.contains('active')
+      if (id) callback(id, isActive)
     })
   }
 }

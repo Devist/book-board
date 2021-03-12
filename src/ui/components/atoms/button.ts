@@ -13,7 +13,7 @@ export class Button {
   }
 
   render(parentId: string) {
-    document.getElementById(parentId).append(this.buttonElement)
+    document.querySelector(`#${parentId}`).append(this.buttonElement)
   }
 
   setId(id: string) {

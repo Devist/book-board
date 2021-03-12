@@ -13,13 +13,13 @@ export interface ICharacterData {
   readonly allegiances: string[]
   readonly books: string[]
   readonly povBooks: string[]
-  readonly tvSeries: string[]
+  tvSeries: string[]
   readonly playedBy: string[]
 }
 
 export enum Gender {
-  Female = '여성',
-  Male = '남성',
+  Female = 'Female',
+  Male = 'Male',
 }
 
 export interface ICharacter extends ICharacterData {

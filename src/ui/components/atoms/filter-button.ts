@@ -5,16 +5,17 @@ export class FilterButton {
   buttonElement: HTMLElement
   isActive: boolean
 
-  constructor(text: string, parentId: string) {
+  constructor(text: string, type: string, parentId: string) {
     this.buttonElement = document.createElement('BUTTON')
     this.isActive = false
     this.setText(text)
+    this.setDataset(type)
     this.setStyle()
     this.render(parentId)
   }
 
   render(parentId: string) {
-    document.getElementById(parentId).append(this.buttonElement)
+    document.querySelector(`#${parentId}`).append(this.buttonElement)
     this.buttonElement.addEventListener('click', () => {
       this.isActive = !this.isActive
       if (this.isActive) this.buttonElement.classList.add('active')
@@ -24,6 +25,10 @@ export class FilterButton {
 
   setText(text: string) {
     this.buttonElement.innerHTML = text
+  }
+
+  setDataset(type: string) {
+    this.buttonElement.dataset.toggleId = type
   }
 
   setStyle() {

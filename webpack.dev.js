@@ -2,7 +2,6 @@
 
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
   entry: {
@@ -44,6 +43,5 @@ module.exports = {
       inject: true,
       filename: 'index.html',
     }),
-    // new CheckerPlugin(),
   ],
 }

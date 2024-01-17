@@ -1,18 +1,18 @@
-'use strict'
+"use strict";
 
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: './src/ui/pages/main/index.ts',
+    main: "./src/ui/pages/main/index.ts",
   },
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   context: path.resolve(__dirname),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash:20].js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].[hash:20].js",
   },
   optimization: {
     minimizer: [
@@ -37,27 +37,27 @@ module.exports = {
       {
         test: /\.ts|tsx$/,
         exclude: [/node_modules/],
-        use: 'awesome-typescript-loader',
+        use: "ts-loader",
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: [".tsx", ".ts", ".js"],
     alias: {
-      '@': path.resolve(__dirname, 'src/'),
+      "@": path.resolve(__dirname, "src/"),
     },
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/ui/pages/main/index.html',
-      chunks: ['main'],
+      template: "./src/ui/pages/main/index.html",
+      chunks: ["main"],
       inject: true,
-      filename: 'index.html',
+      filename: "index.html",
     }),
   ],
-}
+};
